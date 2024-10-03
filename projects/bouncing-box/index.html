@@ -2,99 +2,113 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>Bouncing Box</title>
-	<script src="jquery.min.js"></script>
-	<style>
-		.box {
-			width: 70px;
-			height: 70px;
-			background-color: teal;
-			font-size: 300%;
-			text-align: center;
-			user-select: none;
-			display: block;
-			position: absolute;
-			top: 100px;
-			/* Change me! */
-			left: 0px;
-		}
+    <meta charset="utf-8">
+    <title>Bouncing Box</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        .box {
+            width: 70px;
+            height: 70px;
+            background-color: teal;
+            font-size: 300%;
+            text-align: center;
+            user-select: none;
+            display: block;
+            position: absolute;
+            top: 100px;
+            left: 200px;
+        }
 
-		.board {
-			height: 100vh;
-		}
-	</style>
-	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-
+        .board {
+            height: 100vh;
+            background-image: url('https://configuratormedia.lamborghini.com/renderservice/media/fast/H4sIAAAAAAAAAC2Vza7lNBLHD90CWkiAhhFCvMAVEhLlfCeLK9SI3WxmgWYxvWjZib-OncTHdpJ78y7zBrzRbHiAZsVmNkjzP3dGKtXvuFwuu8oVn19_v3y8xcvrd-9--tuf336t9b-7V5fLU7hcLh_B_urdT7_-8c1_Pnnzy2__N3_61eXjvEWxfgSXf776zM5cS7oGqT__8OHDl5dPYb68vly-BN7cw1wuX3yxRR945PMPY1zD8pfvhkmJthfFIAZZCd4I3lZNL2RVVrIXVdfLsq2mof7qcvnkX9x7Gkff0TlXzBWMSlY2VNTf35gYqGm_HwbifJOMExdra2ogFkERl1M5aeJ67uYNSKyGixX1lgGvd0bc65ssiS-i1ZgLQScsjyoZ6HjXSbZPDtBSVoBvEiKmWc_wS7GJB_DMHOa2aThGIPEeux1763riJz9P6OlFyxdtZoQ93cvv-WpIcFPKGcjXUgB74R0JZKIWEmOAt5jC1RQkpKnnioQXgk2AdAtG61GkkkTmbEeQk8N_5MtdG15i1Wji7drRuI4jY8CCrMbAba4AYTd4hNHuJTDZA8YocLQxhrvfsZdTTROX5RwAD9uEDKGlrdQGOJ0ZTQqnbWhaV-w7rffCTUHVTxPJUS52IDkdHfckrWngIa27DRzwHfKRdrv1luRsl9iRDGZ4YiST7Y470qZ6UmLEMjX-T9t01_FFb3YhJbeWd6R02j0jZXMbR1I-9W4gFZ261qSS2FALlULjK1KZo-5qT52F7bDcknq5KHWKF21edFJoKS2XXp-kDcd-el5z_Ux6UTXqpiPvUUUd8z6WwN7wnnQKulBkJo-zmikikpGi3QsgNdeKjJ3bJZJJR28zmSMVRpBd0taMQK6XnmzmrRjJcckcB6LrMRI7mxk5f7LnmtwcbrEHUj3BmHgzFoCtNObS5nhLbtOtuwHGoT3dadpQAnuLS_Z8bFwNOCUAceCwflxwWD-G260kP60yDeQl98wDy-3syFve64K84x17AkRXcWDsWmCNXcBc5GXYgZ2jpXySfVRAKkcs3-bOTOSP2N8qmvm0zHekFl_WPCWF7GbFh9TTbKaF02xdNWFwPe1zQbPb-rMl3MBUbjRHMeCyF753OO2ycPVc0Trl5cZoXbzELYeCQSg0DEKBzzoAaOwxAnkYrhSUhFDQXKGLg1YQAM9AoGB6CAXnIRTSDKHbxjl2iHxqmQJW22eK4ypjBSRUMU6uQ7mjtH39BMRC9xRTZnhmYtqrm6DE-bKVgKifCkoi9skDGSkneW_AJC0iJZVKBzfthtBQQi9h3oqljICsPGzW1LwCTuYR1vHrPZ7LzTOj5GWvWkDdAy68Q0XSYnpUMq3b3Ra27j6IprXwS6Z2I-Br0VHK490jq_K6AVlfETA_4QtI-6o4o6xli08ou73GJjnoQcAYvEBeOaoG15aRrJ8p7_K2Y3T4Au9Tfg6FDMBZnj3twhWo-76mW3mlgwkIHUUBoaNkEDp4lEdDxxhRkSPxTmIqpRr3dOwFhE4Ry0PSifbJgJX1GejcEuRHuew2rsssl_z4Nke7ze9_5s8Ph52yeSyGkj0YabXJjwXr2QP3wfBHhVdOPox8lpE_vv3H38uf3799X75nrH3gC_7tssUT-ogw_r7yr6_h8l-I4biDRQcAAA.jpg?viewPort=2560,1440,fill');
+        }
+    </style>
 </head>
 
 <body class="board">
-	<!-- HTML for the box -->
-	<div class="box">?</div>
+    <div class="box">?</div>
 
-	<script>
-		(function () {
-			'use strict'
-			/* global jQuery */
+    <script>
+        (function () {
+            'use strict';
+            var box = jQuery('.box');
+            var board = jQuery('.board');
+            var boardWidth = board.width();
+            var boardHeight = jQuery(window).height();
 
-			//////////////////////////////////////////////////////////////////
-			/////////////////// SETUP DO NOT DELETE //////////////////////////
-			//////////////////////////////////////////////////////////////////
+            var speed = 5;
+            var speedY = 5;
+            var positionX = parseInt(box.css('left'));
+            var positionY = parseInt(box.css('top'));
+            var direction = 1;
+            var directionY = 1;
+            var points = 0;
+            var misclicks = 0;
+            var interval = setInterval(update, 50);
 
-			var box = jQuery('.box');	// reference to the HTML .box element
-			var board = jQuery('.board');	// reference to the HTML .board element
-			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
+            box.on('click', handleBoxClick);
+            jQuery('.board').on('click', handleBoardClick);
 
-			// Every 50 milliseconds, call the update Function (see below)
-			setInterval(update, 50);
+            function moveBoxTo(newPositionX, newPositionY) {
+                box.css("left", newPositionX);
+                box.css("top", newPositionY);
+            }
 
-			// Every time the box is clicked, call the handleBoxClick Function (see below)
-			box.on('click', handleBoxClick);
+            function changeBoxText(newText) {
+                box.text(newText);
+            }
 
-			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
-				box.css("left", newPositionX);
-			}
+            function getRandomColor() {
+                var r = Math.floor(Math.random() * 256);
+                var g = Math.floor(Math.random() * 256);
+                var b = Math.floor(Math.random() * 256);
+                return `rgb(${r}, ${g}, ${b})`;
+            }
 
-			// changes the text displayed on the Box
-			function changeBoxText(newText) {
-				box.text(newText);
-			}
+            function update() {
+                positionX += speed * direction;
+                positionY += speedY * directionY;
 
-			//////////////////////////////////////////////////////////////////
-			/////////////////// YOUR CODE BELOW HERE /////////////////////////
-			//////////////////////////////////////////////////////////////////
+                if (positionX + box.width() > boardWidth || positionX < 0) {
+                    direction *= -1;
+                }
 
-			// TODO 2 - Variable declarations 
+                if (positionY + box.height() > boardHeight || positionY < 0) {
+                    directionY *= -1;
+                }
 
+                moveBoxTo(positionX, positionY);
+            }
 
+            function handleBoxClick() {
+                points += 1;
+                changeBoxText(points);
 
-			/* 
-			This Function will be called 20 times/second. Each time it is called,
-			it should move the Box to a new location. If the box drifts off the screen
-			turn it around! 
-			*/
-			function update() {
+                speed += Math.ceil(points / 3); 
+                speedY += Math.ceil(points / 3); 
 
+                positionX = Math.random() * (boardWidth - box.width());
+                positionY = Math.random() * (boardHeight - box.height());
+                moveBoxTo(positionX, positionY);
 
-			};
+                box.css("background-color", getRandomColor());
+            }
 
-			/* 
-			This Function will be called each time the box is clicked. Each time it is called,
-			it should increase the points total, increase the speed, and move the box to
-			the left side of the screen.
-			*/
-			function handleBoxClick() {
+            function handleBoardClick() {
+                misclicks += 1;
+                if (misclicks >= 10) {
+                    endGame();
+                }
+            }
 
+            function endGame() {
+                clearInterval(interval);
+                alert("Game Over! You misclicked 10 times.");
+            }
 
-			};
-
-
-
-
-
-		})();
-	</script>
+        })();
+    </script>
 </body>
 
 </html>
